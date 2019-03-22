@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: alertmanager-dep
+  namespace: prometheus-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager-dep
+  template:
+    metadata:
+      labels:
+        app: alertmanager-dep
+    spec:
+      containers:
+      - image: prom/alertmanager:v0.15.2
+        name: alertmanager
+        args:
+        - "--config.file=/etc/alertmanager/config.yml"
+        - "--storage.path=/alertmanager"
+        - "--data.retention=720h"
+        ports:
+        - containerPort: 9093
+          protocol: TCP
+        volumeMounts:
+        - mountPath: "/alertmanager"
+          name: data
+        - mountPath: "/etc/alertmanager"
+          name: config-volume
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 2500Mi
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: config-volume
+        configMap:
+          name: alertmanager-config

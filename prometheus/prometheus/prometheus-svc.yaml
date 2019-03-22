@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: prometheus-svc
+  namespace: prometheus
+spec:
+  type: NodePort
+  ports:
+  - port: 9090
+    targetPort: 9090
+    nodePort: 30090
+  selector:
+    app: prometheus-dep

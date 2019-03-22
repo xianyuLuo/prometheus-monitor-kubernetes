@@ -1,0 +1,54 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: prometheus-server-dep
+  namespace: prometheus-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-server-dep
+  template:
+    metadata:
+      labels:
+        app: prometheus-server-dep
+    spec:
+      containers:
+      - image: prom/prometheus:v2.3.2
+        name: prometheus-server
+        command:
+        - "/bin/prometheus"
+        args:
+        - "--config.file=/etc/prometheus/config/prometheus.yml"
+        - "--storage.tsdb.path=/prometheus"
+        - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+        - "--web.console.templates=/usr/share/prometheus"
+        - "--storage.tsdb.retention=30d"
+        - "--web.enable-lifecycle"
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        volumeMounts:
+        - name: "data"
+          mountPath: "/prometheus"
+        - name: "server-config-volume"
+          mountPath: "/etc/prometheus/config"
+        - name: "rule-config-volume"
+          mountPath: "/etc/prometheus/rule"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 2500Mi
+      serviceAccountName: prometheus-server
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: server-config-volume
+        configMap:
+          name: prometheus-server-config
+      - name: rule-config-volume
+        configMap:
+          name: prometheus-server-rule-config

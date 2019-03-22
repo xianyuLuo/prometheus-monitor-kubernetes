@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: alertmanager-svc
+  namespace: prometheus-server
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 9093
+  selector:
+    app: alertmanager-dep

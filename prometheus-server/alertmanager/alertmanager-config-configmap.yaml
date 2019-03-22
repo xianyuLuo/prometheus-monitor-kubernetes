@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: prometheus-server
+data:
+  config.yml: |
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: send_msg_warning
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 4h
+      group_by: ['alertname', 'k8scluster', 'node', 'container', 'exported_job', 'daemonset']
+      routes:
+      - receiver: send_msg_warning
+        group_wait: 60s
+        match:
+          severity: warning
+
+    receivers:
+    - name: send_msg_warning
+      webhook_configs:
+      - url: 'http://msg.x.com/xxx/'
+        send_resolved: true
+        http_config:
+          bearer_token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
