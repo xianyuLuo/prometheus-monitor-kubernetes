@@ -1,7 +1,7 @@
 ## Prometheus + Kube-state-metrics + Grafana监控kubernetes集群说明
 
 ### 创建namespace
-    创建namespace：kubectl apply -f ./prometheus-server-namespace.yaml
+ * 创建namespace：kubectl apply -f ./prometheus-server-namespace.yaml
 
 ### 部署alertmanager
     需要修改alertmanager/alertmanager-config-configmap.yaml，定义告警方式

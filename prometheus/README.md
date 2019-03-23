@@ -1,7 +1,7 @@
 ## Prometheus + Kube-state-metrics监控kubernetes集群说明
 
 ### 创建namespace
-    创建namespace：kubectl apply -f ./prometheus-namespace.yaml
+ * 创建namespace：kubectl apply -f ./prometheus-namespace.yaml
 
 ### 部署prometheus
  * 创建rbac权限：kubectl apply -f ./prometheus/prometheus-rbac.yaml

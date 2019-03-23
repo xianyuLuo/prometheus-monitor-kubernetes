@@ -4,7 +4,6 @@
 # 架构
 ![架构图](http://dl-blog.laoxianyu.cn/prometheus-monitor.png)
 
-
 # prometheus部署
 请参考prometheus文件夹，根据README步骤apply
 
