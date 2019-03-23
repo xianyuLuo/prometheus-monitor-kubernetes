@@ -18,6 +18,3 @@
  * 部署kube-state-metrics-svc：kubectl apply -f ./kube-state-metrics/kube-state-metrics-svc.yaml
 
 
-### 详情架构
-
-   [http://xianyuluo.com/post/prometheus%E7%9B%91%E6%8E%A7k8s%E4%B8%80%E7%9B%91%E6%8E%A7%E6%A1%86%E6%9E%B6%E8%B0%83%E7%A0%94/](http://xianyuluo.com/post/prometheus%E7%9B%91%E6%8E%A7k8s%E4%B8%80%E7%9B%91%E6%8E%A7%E6%A1%86%E6%9E%B6%E8%B0%83%E7%A0%94/)
