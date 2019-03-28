@@ -14,11 +14,11 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Pod Down
           k8scluster: "{{ $labels.k8scluster}}"
-          namespace: "{{ $labels.namespace }}"
+          namespace: "{{ $labels.kubernetes_namespace }}"
           pod: "{{ $labels.pod }}"
           container: "{{ $labels.container }}"
 
@@ -28,11 +28,11 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Pod Restart
           k8scluster: "{{ $labels.k8scluster}}"
-          namespace: "{{ $labels.namespace }}"
+          namespace: "{{ $labels.kubernetes_namespace }}"
           pod: "{{ $labels.pod }}"
           container: "{{ $labels.container }}"
 
@@ -42,7 +42,7 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Node Unschedulable
           k8scluster: "{{ $labels.k8scluster}}"
@@ -54,7 +54,7 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Node Status Error
           k8scluster: "{{ $labels.k8scluster}}"
@@ -66,11 +66,11 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Daemonset Unavailable
           k8scluster: "{{ $labels.k8scluster}}"
-          namespace: "{{ $labels.namespace }}"
+          namespace: "{{ $labels.kubernetes_namespace }}"
           daemonset: "{{ $labels.daemonset }}"
 
       - alert: JobFailed
@@ -79,9 +79,9 @@ data:
         labels:
           severity: error
           service: prometheus_bot
-          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.kubernetes_namespace }}"
         annotations:
           summary: Job Failed
           k8scluster: "{{ $labels.k8scluster}}"
-          namespace: "{{ $labels.namespace }}"
+          namespace: "{{ $labels.kubernetes_namespace }}"
           job: "{{ $labels.exported_job }}"
