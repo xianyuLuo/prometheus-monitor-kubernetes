@@ -22,7 +22,7 @@ data:
     - "/etc/prometheus/rule/rule.yml"
 
     scrape_configs:
-    - job_name: federate-sdorica
+    - job_name: federate-xxxx
       honor_labels: true
       params:
         match[]:
@@ -36,7 +36,7 @@ data:
         - x.x.x.x:30090
         labels:
           k8scluster: xxxx-k8s
-    - job_name: federate-sdorica
+    - job_name: federate-yyyy
       honor_labels: true
       params:
         match[]:
