@@ -2,7 +2,7 @@
 如何使用prometheus来监控kubernetes集群
 
 # 架构
-![架构图](http://dl-blog.laoxianyu.cn/prometheus-monitor.png)
+![架构图](http://static.dragonest.com/share/img/prometheus-monitor.png)
 
 # prometheus部署
 请参考prometheus文件夹，根据README步骤apply
