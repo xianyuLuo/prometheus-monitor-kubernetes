@@ -1,3 +1,22 @@
+## 一键部署
+kubectl apply -f ./prometheus-namespace.yaml
+
+kubectl apply -f ./prometheus/prometheus-rbac.yaml
+
+kubectl apply -f ./prometheus/prometheus-config-configmap.yaml
+
+kubectl apply -f ./prometheus/prometheus-dep.yaml
+
+kubectl apply -f ./prometheus/prometheus-svc.yaml
+
+kubectl apply -f ./kube-state-metrics/kube-state-metrics-rbac.yaml
+
+kubectl apply -f ./kube-state-metrics/kube-state-metrics-dep.yaml
+
+kubectl apply -f ./kube-state-metrics/kube-state-metrics-svc.yaml
+
+kubectl get -n prometheus pod
+
 ## Prometheus + Kube-state-metrics监控kubernetes集群说明
 
 ### 创建namespace
