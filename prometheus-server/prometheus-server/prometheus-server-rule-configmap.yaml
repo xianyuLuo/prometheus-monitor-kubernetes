@@ -85,3 +85,25 @@ data:
           k8scluster: "{{ $labels.k8scluster}}"
           namespace: "{{ $labels.kubernetes_namespace }}"
           job: "{{ $labels.exported_job }}"
+
+      - alert: ClusterMemoryUsageRate
+        expr: sum by(k8scluster) (container_memory_working_set_bytes{image!=""}) / sum by(k8scluster)  (machine_memory_bytes) * 100 > 80
+        for: 5m
+        labels:
+          severity: error
+          service: prometheus_bot
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+        annotations:
+          summary: K8s集群内存使用率大于80%
+          k8scluster: "{{ $labels.k8scluster}}" 
+
+      - alert: ClusterCpuUsageRate
+        expr: sum by (k8scluster) (rate(container_cpu_usage_seconds_total{image != ""}[5m])) / sum by (k8scluster) (machine_cpu_cores) * 100 > 60
+        for: 5m
+        labels:
+          severity: error
+          service: prometheus_bot
+          receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
+        annotations:
+          summary: K8s集群CPU使用率大于60%
+          k8scluster: "{{ $labels.k8scluster}}" 
