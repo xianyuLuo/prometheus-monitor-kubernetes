@@ -94,7 +94,7 @@ data:
           service: prometheus_bot
           receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
         annotations:
-          summary: K8s集群内存使用率大于80%
+          summary: "K8s集群内存使用率大于80% current: {{ $value }}"
           k8scluster: "{{ $labels.k8scluster}}" 
 
       - alert: ClusterCpuUsageRate
@@ -105,5 +105,5 @@ data:
           service: prometheus_bot
           receiver_group: "{{ $labels.k8scluster}}_{{ $labels.namespace }}"
         annotations:
-          summary: K8s集群CPU使用率大于60%
+          summary: "K8s集群CPU使用率大于60% current: {{ $value }}"
           k8scluster: "{{ $labels.k8scluster}}" 
